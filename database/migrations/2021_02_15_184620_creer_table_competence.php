@@ -17,7 +17,9 @@ class CreerTableCompetence extends Migration
             $table->id();
             $table->string('nomCompetence', 25);
             $table->string('description', 25);
-            $table->float('idEtudiant', 10);
+            $table->unsignedBigInteger('idEtudiant');
+
+            $table->foreign('idEtudiant')->references('id')->on('etudiant');
         });
     }
 

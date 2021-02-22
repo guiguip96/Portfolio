@@ -15,8 +15,11 @@ class CreerTablePaniertalent extends Migration
     {
         Schema::create('panierTalent', function (Blueprint $table) {
             $table->id();
-            $table->float('idRecruteur', 10);
-            $table->float('idCompetence', 10);
+            $table->unsignedBigInteger('idRecruteur');
+            $table->unsignedBigInteger('idCompetence');
+
+            $table->foreign('idRecruteur')->references('id')->on('recruteur');
+            $table->foreign('idCompetence')->references('id')->on('competence');
         });
     }
 

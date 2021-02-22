@@ -23,7 +23,10 @@ class CreerTableRecruteur extends Migration
             $table->string('telephone', 15);
             $table->string('courriel', 40);
             $table->string('compagnie', 40);
-            $table->float('idUser', 10);
+            $table->unsignedBigInteger('idUser');
+
+            $table->foreign('idUser')->references('id')->on('users');
+
         });
     }
 

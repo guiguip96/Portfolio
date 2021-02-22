@@ -23,7 +23,9 @@ class CreerTableEtudiant extends Migration
             $table->string('telephone', 15);
             $table->string('courriel', 40);
             $table->string('biographie', 100);
-            $table->float('idUser', 10);
+            $table->unsignedBigInteger('idUser');
+            
+            $table->foreign('idUser')->references('id')->on('users');
         });
     }
 

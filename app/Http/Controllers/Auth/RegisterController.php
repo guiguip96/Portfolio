@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Recruteur;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -65,11 +66,31 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'type' => $data['type'],
         ]);
+
+        $emailRecruteur = $data['email'];
+        $leUser = User::where('email', $emailRecruteur)->first();
+
+        if(!Recruteur::find($data['email']))
+        {
+            $unRecruteur = Recruteur::firstOrNew(['id'=>0]);
+            $unRecruteur->prenom = "";
+            $unRecruteur->nom = $data['name'];
+            $unRecruteur->adresse = "";
+            $unRecruteur->ville = "";
+            $unRecruteur->codePostal = "";
+            $unRecruteur->telephone = "";
+            $unRecruteur->courriel = $data['email'];
+            $unRecruteur->compagnie = "";
+            $unRecruteur->idUser = $leUser->id;
+            $unRecruteur->save();
+        }
+
+        return $leUser;
     }
 }

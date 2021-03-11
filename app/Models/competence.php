@@ -10,10 +10,5 @@ class competence extends Model
     use HasFactory;
     protected $table = 'competence';
     public $timestamps = false;
-
-    protected $fillable = [
-        'nomCompetence',
-        'description',
-        'idEtudiant'
-    ];
+    protected $fillable = ['nomCompetence','description','idEtudiant'];
 }

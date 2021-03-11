@@ -10,16 +10,5 @@ class etudiant extends Model
     use HasFactory;
     protected $table = 'etudiant';
     public $timestamps = false;
-
-    protected $fillable = [
-        'prenom',
-        'nom',
-        'adresse',
-        'codePostal', 
-        'ville', 
-        'telephone',
-        'courriel',
-        'biographie',
-        'idUser'
-    ];
+    protected $fillable = ['prenom','nom','adresse','codePostal', 'ville', 'telephone','courriel','biographie','idUser'];
 }

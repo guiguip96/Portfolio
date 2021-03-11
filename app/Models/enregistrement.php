@@ -10,9 +10,5 @@ class enregistrement extends Model
     use HasFactory;
     protected $table = 'enregistrement';
     public $timestamps = false;
-
-    protected $fillable = [
-        'idRecruteur',
-        'idCompetence'
-    ];
+    protected $fillable = ['idRecruteur','idCompetence'];
 }

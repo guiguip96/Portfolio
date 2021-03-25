@@ -30,15 +30,14 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">ÉTUDES</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">RÉALISATIONS</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">COMPÉTENCES</a></li>
-                    <br><br>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">PANIER</a></li>
+                    <br><br>
                     @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Connexion') }}</a>
                                 </li>
                             @endif
-                            
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Enregistrement') }}</a>
@@ -51,17 +50,24 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if (Auth::user()->type=='recruteur')
+                                        <a class="dropdown-item" href="./profil/{{ Auth::user()->id }}">Profil</a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Déconnexion') }}
                                     </a>
-
+                                    
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
                             </li>
+                            @if(Auth::user()->type=='etudiant')
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url('/etudiantAdmin') }}">ADMIN</a></li>
+                            @else
+                            @endif
                         @endguest
                 </ul>
             </div>
@@ -70,7 +76,15 @@
         <div class="container-fluid p-0">
             <!-- About-->
             <section class="resume-section" id="about">
+
                 <div class="resume-section-content">
+                    @if (session('message'))  
+                        <div class="alert alert-info">  
+                            <strong>  
+                                {{ session('message') }}  
+                            </strong>  
+                        </div>  
+                    @endif
                     <h1 class="mb-0">
                         Guillaume
                         <span class="text-primary">Pelletier</span>

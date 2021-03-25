@@ -26,8 +26,8 @@ class RealisationController extends Controller
      * @link: (url ou git ou rien)
      * @subject: Modifier une réalisation
      * @name: modifierRealisation
-     * @paramIn: L'id de la réalisation
-     * @paramOut: La view pour modifier la réalisation
+     * @param In: L'id de la réalisation
+     * @param Out: La view pour modifier la réalisation
      */
     public function modifierRealisation($id)
     {
@@ -43,8 +43,8 @@ class RealisationController extends Controller
      * @link: (url ou git ou rien)
      * @subject: Afficher les détails d'une réalisation
      * @name: afficherDetailsRealisation
-     * @paramIn: L'id de la réalisation
-     * @paramOut: La view pour afficher les détails de la réalisation
+     * @param In: L'id de la réalisation
+     * @param Out: La view pour afficher les détails de la réalisation
      */
     public function afficherDetailsRealisation($id)
     {
@@ -65,8 +65,8 @@ class RealisationController extends Controller
      * @link: (url ou git ou rien)
      * @subject: Supprimer une réalisation
      * @name: supprimerRealisation
-     * @paramIn: L'id de la réalisation
-     * @paramOut: La suppression de la réalisation
+     * @param In: L'id de la réalisation
+     * @param Out: La suppression de la réalisation
      */
     public function supprimerRealisation($id)
     {
@@ -80,8 +80,8 @@ class RealisationController extends Controller
      * @link: (url ou git ou rien)
      * @subject: Création d'une réalisation
      * @name: enregistrerRealisation
-     * @paramIn: Les champs du formulaire remplis
-     * @paramOut: Une nouvelle réalisation
+     * @param In: Les champs du formulaire remplis
+     * @param Out: Une nouvelle réalisation
      */
     public function enregistrerRealisation(Request $request)
     {

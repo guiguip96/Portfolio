@@ -37,6 +37,13 @@
                 @else
                 <h2 class="mb-5">Modification des informations du profil</h2>
                 @endif
+                @error('usernames')
+                        <div class="col-12 px-0">
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                        </div>
+                    @enderror
                     @error('prenom')
                         <div class="col-12 px-0">
                             <div class="alert alert-danger">
@@ -104,6 +111,12 @@
                     {{ csrf_field() }} 
                     <input name="idUser" type="hidden" placeholder="id" value="{{ $unUser->id }}" />
                     <input name="id" type="hidden" placeholder="id" value="{{ $unRecruteur->id }}" />
+                        <div class="form-row">
+                            <div class="form-group col-md-5" >
+                                <label for="inputEmail4">Nom d'utilisateur:</label>
+                                <input name="username" type="text" class="form-control" id="inputEmail4" placeholder="Entrez votre username..." value="{{ $unUser->name }}">
+                            </div>
+                        </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">Prénom</label>

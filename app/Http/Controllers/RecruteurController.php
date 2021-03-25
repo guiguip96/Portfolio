@@ -21,7 +21,7 @@ class RecruteurController extends Controller
     public function afficherProfil(){
 
         $id = Auth::user()->id;
-        $unUser = User::find(Auth::user()->id);
+        $unUser = User::find($id);
         $unRecruteur = Recruteur::where('idUser', '=', $id)->first();
 
         if(Auth::user()->id == $id){
@@ -45,6 +45,7 @@ class RecruteurController extends Controller
 
         $request->validate
         ([
+            'username' => ['required', 'max:25' ],
             'prenom' => ['required', 'max:25' ],
             'nom' => ['required', 'max:25' ],
             'adresse' => ['required','max:40' ],
@@ -55,7 +56,11 @@ class RecruteurController extends Controller
             'compagnie' => ['required', 'max:40' ],
             'idUser' => ['required', 'max:40' ],
         ]);
-        
+
+        $unUser = User::find(Auth::user()->id);
+        $unUser->name = $request->input('username');
+        $unUser->save();
+
         $unRecruteur = Recruteur::firstOrNew(['idUser'=>$request->input('idUser')]);
         $unRecruteur->prenom = $request->input('prenom');
         $unRecruteur->nom = $request->input('nom');
@@ -66,6 +71,7 @@ class RecruteurController extends Controller
         $unRecruteur->courriel = $request->input('courriel');
         $unRecruteur->compagnie = $request->input('compagnie');
         $unRecruteur->save();
+
         return redirect()->route('home')->with('message','Modifications enregistrées avec succès!');
     }
 }

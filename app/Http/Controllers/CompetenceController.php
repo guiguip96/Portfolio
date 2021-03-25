@@ -25,8 +25,8 @@ class CompetenceController extends Controller
      * @link: (url ou git ou rien)
      * @subject: Modifier une compétence
      * @name: modifierCompetence
-     * @paramIn: L'id de la compétence
-     * @paramOut: La view pour modifier la compétence
+     * @param In: L'id de la compétence
+     * @param Out: La view pour modifier la compétence
      */
     public function modifierCompetence($id)
     {
@@ -39,8 +39,8 @@ class CompetenceController extends Controller
      * @link: (url ou git ou rien)
      * @subject: Afficher les détails d'une compétence choisie
      * @name: afficherDetailsCompetence
-     * @paramIn: L'id de la compétence
-     * @paramOut: La view affichant toutes les informations de la compétence
+     * @param In: L'id de la compétence
+     * @param Out: La view affichant toutes les informations de la compétence
      */
     public function afficherDetailsCompetence($id)
     {
@@ -61,8 +61,8 @@ class CompetenceController extends Controller
      * @link: (url ou git ou rien)
      * @subject: Supprimer une compétence
      * @name: supprimerCompetence
-     * @paramIn: L'id de la compétence
-     * @paramOut: La suppression de la compétence choisie
+     * @param In: L'id de la compétence
+     * @param Out: La suppression de la compétence choisie
      */
     public function supprimerCompetence($id)
     {
@@ -76,8 +76,8 @@ class CompetenceController extends Controller
      * @link: (url ou git ou rien)
      * @subject: L'ajout d'une nouvelle compétence
      * @name: enregistrerCompetence
-     * @paramIn: Les champs du formulaire remplis
-     * @paramOut: Une nouvelle compétence
+     * @param In: Les champs du formulaire remplis
+     * @param Out: Une nouvelle compétence
      */
     public function enregistrerCompetence(Request $request)
     {

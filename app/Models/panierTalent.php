@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PanierTalent extends Model
 {
     use HasFactory;
+    protected $table = 'paniertalent';
+    public $timestamps = false;
+    protected $fillable = ['idRecruteur','idCompetence'];
 }

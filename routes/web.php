@@ -50,3 +50,7 @@ Route::get('/profil/{id}',
         [App\Http\Controllers\RecruteurController::class, 'afficherProfil'])->name('recruteur.afficherProfil'); 
 Route::post('/recruteur/enregistrer', 
         [App\Http\Controllers\RecruteurController::class, 'enregistrerRecruteur'])->name('recruteur.enregistrer');
+
+//Gestion du panier
+Route::get('/panier',
+        [App\Http\Controllers\PanierController::class, 'afficherPanier'])->name('panier.afficher');

@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Barryvdh\DomPDF\Facade as PDF;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,13 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-
 Auth::routes();
 
 //Routes de bases pour les pages principales (Landing page, Administration)
+Route::get('/',
+        [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home',
         [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/etudiantAdmin', 
@@ -27,7 +26,9 @@ Route::get('/etudiantAdmin',
 
 //Gestion des compétences
 Route::get('/competence/{id}', 
-        [App\Http\Controllers\CompetenceController::class, 'afficherDetailsCompetence'])->name('competence.afficherDetails');  
+        [App\Http\Controllers\CompetenceController::class, 'afficherDetailsCompetence'])->name('competence.afficherDetails'); 
+Route::get('/ajout/competence', 
+        [App\Http\Controllers\CompetenceController::class, 'ajouterCompetence'])->name('competence.ajouter');   
 Route::post('/competence/enregistrer', 
         [App\Http\Controllers\CompetenceController::class, 'enregistrerCompetence'])->name('competence.enregistrer');
 Route::get('/competence/modifier/{id}', 
@@ -38,6 +39,8 @@ Route::get('/competence/supprimer/{id}',
 //Gestion des réalisations
 Route::get('/realisation/{id}', 
         [App\Http\Controllers\RealisationController::class, 'afficherDetailsRealisation'])->name('realisation.afficherDetails');  
+Route::get('/ajout/realisation', 
+        [App\Http\Controllers\RealisationController::class, 'ajouterRealisation'])->name('realisation.ajouter');   
 Route::post('/realisation/enregistrer', 
         [App\Http\Controllers\RealisationController::class, 'enregistrerRealisation'])->name('realisation.enregistrer');
 Route::get('/realisation/modifier/{id}', 
@@ -54,3 +57,12 @@ Route::post('/recruteur/enregistrer',
 //Gestion du panier
 Route::get('/panier',
         [App\Http\Controllers\PanierController::class, 'afficherPanier'])->name('panier.afficher');
+Route::get('/ajoutpanier/{id}',
+        [App\Http\Controllers\PanierController::class, 'ajouterAuPanier'])->name('panier.ajouter');
+        Route::get('/panier/supprimer/{id}',
+        [App\Http\Controllers\PanierController::class, 'supprimerDuPanier'])->name('panier.ajouter');
+Route::get('/impression/pdf/oui/test', function(){
+        $pdf = PDF::loadView('panier');
+        $pdf->download('liste.pdf');
+        return view('index');
+});

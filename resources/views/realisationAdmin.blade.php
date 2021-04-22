@@ -27,15 +27,10 @@ tr:nth-child(even) {
     <h1>Création d’une nouvelle réalisation</h1>  
     <form method="POST" action="/realisation/enregistrer">  
         {{ csrf_field() }}  
-        <strong>Nom de la réalisation:</strong><input name="nomRealisation" type="text" placeholder="Nom de la réalisation" value="{{ old('nomRealisation') }}" />
+        <strong>Nom de la réalisation:</strong><input name="nomRealisation" type="text" placeholder="Nom de la réalisation"/>
         <br /> <br />
         <strong>Description:</strong> <input name="description" type="text">
         <br /> <br />
-        <strong>Compétence associée :</strong><select name="idCompetence">
-            @foreach($toutesLesCompetences as $uneCompetence)
-                <option value="{{ $uneCompetence->id }}">{{ $uneCompetence->nomCompetence }}</option>
-            @endforeach                 
-        </select>
         <input name="idEtudiant" type="hidden"  value="1" />
         <br /> <br />
         <button type="submit">Enregistrer</button>  

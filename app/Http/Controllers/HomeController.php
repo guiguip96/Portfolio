@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Competence;
+use App\Models\Etudiant;
+use App\Models\Realisation;
+
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -23,6 +27,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $Guillaume = Etudiant::where('id', '=', '1')->get();
+        $toutesLesCompetences = Competence::all();
+        $toutesLesRealisations = Realisation::all();
+
+        return view('index')->with('Guillaume', $Guillaume)
+                            ->with('toutesLesCompetences', $toutesLesCompetences)
+                            ->with('toutesLesRealisations', $toutesLesRealisations);
     }
 }

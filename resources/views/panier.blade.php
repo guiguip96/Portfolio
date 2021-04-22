@@ -29,18 +29,29 @@
             </div>
         </nav>
         <!-- Page Content-->
-        <div class="container-fluid p-0">
+        <div style="width:100%" class="container-fluid p-0">
             <section class="resume-section" id="experience">
                 <div class="resume-section-content">
-                /*
-                * c'est ici que la page panier va wouhou
-                *
-                *
-                *
-                *
-                */
+                <h2>Liste des éléments dans le panier</h1>
+                <table>
+                    <tr>
+                        <th>Nom de l'élément</th>
+                        <th>Description</th>
+                        <th>Options</th>
+                    </tr>
+                    @foreach ($toutLePanier as $unItem)  
+                    <tr>
+                        <td><a  >{{$unItem->nomCompetence}}</a></td>
+                        <td><a >{{$unItem->description}}</a></td>
+                        <td><a  class="btn btn-danger"  href="/panier/supprimer/{{ $unItem->id }}">Supprimer</a></td>
+                    </tr>
+                    @endforeach
+                </table>
+                <br>
+                <a  class="btn btn-success"  href="/impression/pdf/oui/test">Sauvegarder ma liste</a>
                 </div>
             </section>
+
             <hr class="m-0" />
         </div>
         <!-- Bootstrap core JS-->

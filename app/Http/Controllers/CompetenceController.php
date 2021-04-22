@@ -20,6 +20,12 @@ use Illuminate\Support\Facades\Auth;
 
 class CompetenceController extends Controller
 {
+    public function ajouterCompetence()
+    {
+        return view('competenceAdmin');
+    }
+
+
     /**
      * @author: Guillaume Pelletier
      * @link: (url ou git ou rien)

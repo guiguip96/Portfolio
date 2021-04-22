@@ -21,6 +21,11 @@ use Illuminate\Support\Facades\Auth;
 
 class RealisationController extends Controller
 {
+    public function ajouterRealisation()
+    {
+        return view('realisationAdmin');
+    }
+
     /**
      * @author: Guillaume Pelletier
      * @link: (url ou git ou rien)
@@ -32,10 +37,8 @@ class RealisationController extends Controller
     public function modifierRealisation($id)
     {
         $uneRealisation = Realisation::find($id);
-        $toutesLesCompetences = Competence::all();
 
-        return view('realisationModifier')->with('uneRealisation', $uneRealisation)
-                                          ->with('toutesLesCompetences', $toutesLesCompetences); 
+        return view('realisationModifier')->with('uneRealisation', $uneRealisation); 
     }
 
     /**
@@ -90,13 +93,11 @@ class RealisationController extends Controller
             'nomRealisation' => ['required', 'min:3', 'max:20' ],
             'description' => ['required', 'min:10', 'max:200' ],
             'idEtudiant' => ['required', 'min:1', 'max:200' ],
-            'idCompetence' => ['required', 'min:1', 'max:200' ],
         ]);
         $uneRealisation = Realisation::firstOrNew(['id'=>$request->input('id')]);
         $uneRealisation->nomRealisation = $request->input('nomRealisation');
         $uneRealisation->description = $request->input('description');
         $uneRealisation->idEtudiant = $request->idEtudiant;
-        $uneRealisation->idCompetence = $request->idCompetence;
         $uneRealisation->save();
         return redirect()->route('etudiant.afficher')->with('message','Réalisation enregistrée avec succès');
     }

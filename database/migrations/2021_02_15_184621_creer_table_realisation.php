@@ -18,10 +18,8 @@ class CreerTableRealisation extends Migration
             $table->string('nomRealisation', 25);
             $table->string('description', 25);
             $table->unsignedBigInteger('idEtudiant');
-            $table->unsignedBigInteger('idCompetence');
 
             $table->foreign('idEtudiant')->references('id')->on('etudiant');
-            $table->foreign('idCompetence')->references('id')->on('competence');
         });
     }
 

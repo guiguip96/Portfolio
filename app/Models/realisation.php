@@ -10,6 +10,6 @@ class Realisation extends Model
     use HasFactory;
     protected $table = 'realisation';
     public $timestamps = false;
-    protected $fillable = ['nomRealisation','description','idEtudiant', 'idCompetence'];
+    protected $fillable = ['nomRealisation','description','idEtudiant'];
 
 }

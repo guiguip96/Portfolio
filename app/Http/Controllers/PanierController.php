@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Competence;
+use App\Models\Etudiant;
 use App\Models\PanierTalent;
+use App\Models\Realisation;
 use App\Models\Recruteur;
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class PanierController extends Controller
 {
@@ -72,6 +74,29 @@ class PanierController extends Controller
             $panierTalent->delete();
 
         return redirect()->route('panier.afficher')->with('message','Compétence enlevée de votre liste');
+    }
+
+    public function imprimerPanier()
+    {
+        $toutesLesCompetences = Competence::all();
+        $toutesLesRealisations = Realisation::all();
+        $emailRecruteur = Auth::user()->email;
+        $unRecruteur = Recruteur::where('courriel', $emailRecruteur)->first();
+        $toutLePanier = PanierTalent::where('idRecruteur', '=', $unRecruteur->id)
+                                    ->join('competence', 'paniertalent.idCompetence', '=' , 'Competence.id')
+                                    ->get();
+
+
+        $pdf = PDF::loadView('panier')->with('toutLePanier', $toutLePanier)
+                                    ->with('toutesLesCompetences', $toutesLesCompetences)
+                                    ->with('toutesLesRealisations', $toutesLesRealisations)
+                                    ->with('toutLePanier', $toutLePanier);
+        $pdf->stream('panier.pdf');
+    }
+
+    public function emailPanier()
+    {
+
     }
 }
 

@@ -87,19 +87,49 @@
                         </div>  
                     @endif
                     <h1 class="mb-0">
-                        Guillaume
-                        <span class="text-primary">Pelletier</span>
+                    @foreach($Guillaume as $leGuillaume)
+                        {{$leGuillaume->prenom}}
+                    @endforeach
+                        <span class="text-primary">
+                    @foreach($Guillaume as $leGuillaume)
+                        {{$leGuillaume->nom}}
+                    @endforeach</span>
                     </h1>
                     <div class="subheading mb-5">
-                        (418)123-4567 · Rivière-du-Loup, QC ·
-                        <a href="mailto:name@email.com">guillaumep_96@hotmail.fr</a>
+                    @foreach($Guillaume as $leGuillaume)
+                        {{$leGuillaume->telephone}}
+                    @endforeach · 
+                    @foreach($Guillaume as $leGuillaume)
+                        {{$leGuillaume->ville}}
+                    @endforeach, QC ·
+                        <a href="mailto:guillaumep_96@hotmail.fr">
+                    @foreach($Guillaume as $leGuillaume)
+                        {{$leGuillaume->courriel}}
+                    @endforeach</a>
                     </div>
-                    <p class="lead mb-5">Blablablabloblobloblo la description va aller ici</p>
+                    @guest
+                        <p class="lead mb-5">Bienvenue sur mon portfolio interactif!
+                        <br>Afin de profiter des multiples fonctionnalités disponibles, veuillez créer un compte.
+                        <br><br>Entre autre, vous pourrez:
+                        <br>- Enregistrer les éléments qui vous attirent
+                        <br>- Vous les envoyer par courriel
+                        <br>- Les sauvegarder en format PDF
+                        </p>
+                    @else
+                    <p class="lead mb-5">Bienvenue sur mon portfolio interactif!</p>
+                    @endguest
+ 
+                    <p >
+                    @foreach($Guillaume as $leGuillaume)
+                        {{$leGuillaume->biographie}}
+                    @endforeach</p>
+                    <br>
                     <div class="social-icons">
                         <a class="social-icon" href="#"><i class="fab fa-github"></i></a>
                         <a class="social-icon" href="#"><i class="fab fa-twitter"></i></a>
                         <a class="social-icon" href="#"><i class="fab fa-facebook-f"></i></a>
                     </div>
+
                 </div>
             </section>
             <hr class="m-0" />
@@ -129,7 +159,7 @@
             <section class="resume-section" id="skills">
                 <div class="resume-section-content">
                     <h2 class="mb-5">Compétences</h2>
-                    <div class="subheading mb-3">Outils maîtrisés</div>
+                    <!--<div class="subheading mb-3">Outils maîtrisés</div>
                     <ul class="list-inline dev-icons">
                         <li class="list-inline-item"><i class="fab fa-node-js"></i></li>
                         <li class="list-inline-item"><i class="fab fa-wordpress"></i></li>
@@ -140,6 +170,7 @@
                         <li class="list-inline-item"><i class="fab fa-sass"></i></li>
                     </ul>
                     <br>
+                    -->
                     <div class="subheading mb-3">Mise de côté</div>
                     <div class="mb-0">Mon portfolio comporte un module vous permettant de sauvegarder les éléments qui vous marquent, testez-le en vous connectant!</div>
                         <br>

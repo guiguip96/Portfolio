@@ -31,13 +31,13 @@
         <!-- Page Content-->
         <div style="width:100%" class="container-fluid p-0">
             <section class="resume-section" id="experience">
-                <div class="resume-section-content">
+                <div style="width:100%;" class="resume-section-content">
                 <h2>Liste des éléments dans le panier</h1>
                 <table>
                     <tr>
-                        <th>Nom de l'élément</th>
-                        <th>Description</th>
-                        <th>Options</th>
+                        <th style="width:50%">Nom de l'élément</th>
+                        <th style="width:33%">Description</th>
+                        <th style="width:33%">Options</th>
                     </tr>
                     @foreach ($toutLePanier as $unItem)  
                     <tr>
@@ -46,9 +46,15 @@
                         <td><a  class="btn btn-danger"  href="/panier/supprimer/{{ $unItem->id }}">Supprimer</a></td>
                     </tr>
                     @endforeach
+                    
                 </table>
                 <br>
-                <a  class="btn btn-success"  href="/impression/pdf/oui/test">Sauvegarder ma liste</a>
+                
+                @if($toutLePanier->isEmpty())
+                    <p>Le panier est vide!</p>
+                @else 
+                    <a  class="btn btn-success"  href="/impression/pdf">Sauvegarder ma liste</a>
+                @endif
                 </div>
             </section>
 

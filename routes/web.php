@@ -59,10 +59,7 @@ Route::get('/panier',
         [App\Http\Controllers\PanierController::class, 'afficherPanier'])->name('panier.afficher');
 Route::get('/ajoutpanier/{id}',
         [App\Http\Controllers\PanierController::class, 'ajouterAuPanier'])->name('panier.ajouter');
-        Route::get('/panier/supprimer/{id}',
+Route::get('/panier/supprimer/{id}',
         [App\Http\Controllers\PanierController::class, 'supprimerDuPanier'])->name('panier.ajouter');
-Route::get('/impression/pdf/oui/test', function(){
-        $pdf = PDF::loadView('panier');
-        $pdf->download('liste.pdf');
-        return view('index');
-});
+Route::get('/impression/pdf', 
+        [App\Http\Controllers\PanierController::class, 'imprimerPanier'])->name('panier.imprimer');

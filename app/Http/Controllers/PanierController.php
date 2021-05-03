@@ -87,11 +87,8 @@ class PanierController extends Controller
                                     ->get();
 
 
-        $pdf = PDF::loadView('panier')->with('toutLePanier', $toutLePanier)
-                                    ->with('toutesLesCompetences', $toutesLesCompetences)
-                                    ->with('toutesLesRealisations', $toutesLesRealisations)
-                                    ->with('toutLePanier', $toutLePanier);
-        $pdf->stream('panier.pdf');
+        $pdf = PDF::loadView('panierPDF' , ["toutLePanier"=>$toutLePanier]);
+        $pdf->download('panier.pdf');
     }
 
     public function emailPanier()

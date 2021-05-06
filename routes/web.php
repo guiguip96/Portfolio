@@ -23,6 +23,8 @@ Route::get('/home',
         [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/etudiantAdmin', 
         [App\Http\Controllers\EtudiantController::class, 'afficherAdmin'])->name('etudiant.afficher');
+Route::post('/envoiCourriel', 
+        [App\Http\Controllers\EtudiantController::class, 'envoyerCourriel'])->name('etudiant.envoi');
 
 //Gestion des compétences
 Route::get('/competence/{id}', 

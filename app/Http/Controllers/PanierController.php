@@ -13,6 +13,14 @@ use Barryvdh\DomPDF\Facade as PDF;
 
 class PanierController extends Controller
 {
+    /**
+     * @author: Guillaume Pelletier
+     * @link: 
+     * @subject: Afficher le panier
+     * @name: afficherPanier
+     * @param In: -
+     * @param Out: La view du panier
+     */
     public function afficherPanier()
     {
         if(Auth::user() != null){
@@ -28,6 +36,14 @@ class PanierController extends Controller
             return view('auth/login');  
     }
 
+    /**
+     * @author: Guillaume Pelletier
+     * @link: (url ou git ou rien)
+     * @subject: Ajouter au panier
+     * @name: ajouterAuPanier
+     * @param In: N/A
+     * @param Out: Un nouvel élément au panier
+     */
     public function ajouterAuPanier($id)
     {
         if(Auth::user() != null){
@@ -64,6 +80,15 @@ class PanierController extends Controller
            return view('auth/login');  
     }
 
+
+    /**
+     * @author: Guillaume Pelletier
+     * @link: (url ou git ou rien)
+     * @subject: Permet de supprimer un élément du panier
+     * @name: supprimerDuPanier
+     * @param In: -
+     * @param Out: -
+     */
     public function supprimerDuPanier($id)
     {
         $uneCompetence = Competence::find($id);
@@ -76,10 +101,16 @@ class PanierController extends Controller
         return redirect()->route('panier.afficher')->with('message','Compétence enlevée de votre liste');
     }
 
+    /**
+     * @author: Guillaume Pelletier
+     * @link: (url ou git ou rien)
+     * @subject: Imprimer en PDF les informations dans le Panier
+     * @name: imprimerPanier
+     * @param In: N/A
+     * @param Out: La view en format PDF pour l'impression
+     */
     public function imprimerPanier()
     {
-        $toutesLesCompetences = Competence::all();
-        $toutesLesRealisations = Realisation::all();
         $emailRecruteur = Auth::user()->email;
         $unRecruteur = Recruteur::where('courriel', $emailRecruteur)->first();
         $toutLePanier = PanierTalent::where('idRecruteur', '=', $unRecruteur->id)
@@ -89,11 +120,8 @@ class PanierController extends Controller
 
         $pdf = PDF::loadView('panierPDF' , ["toutLePanier"=>$toutLePanier]);
         $pdf->download('panier.pdf');
-    }
 
-    public function emailPanier()
-    {
-
+        return redirect()->route('panier.afficher')->with('message','Fichier enregistré!');
     }
 }
 

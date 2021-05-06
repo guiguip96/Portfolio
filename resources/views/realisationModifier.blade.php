@@ -11,11 +11,6 @@
         <br /> <br />
         <strong>Description:</strong> <input name="description" type="text" value="{{ $uneRealisation->description }}" >
         <br /> <br />
-        <strong>Compétence associée :</strong><select name="idCompetence">
-            @foreach($toutesLesCompetences as $uneCompetence)
-                <option value="{{ $uneCompetence->id }}">{{ $uneCompetence->nomCompetence }}</option>
-            @endforeach                 
-        </select>
         <input name="idEtudiant" type="hidden"  value="1" />
         <button type="submit">Enregistrer</button>  
     </form>  

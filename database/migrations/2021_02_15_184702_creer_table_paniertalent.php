@@ -17,9 +17,11 @@ class CreerTablePaniertalent extends Migration
             $table->id();
             $table->unsignedBigInteger('idRecruteur');
             $table->unsignedBigInteger('idCompetence');
+            $table->unsignedBigInteger('idRealisation');
 
             $table->foreign('idRecruteur')->references('id')->on('recruteur');
             $table->foreign('idCompetence')->references('id')->on('competence');
+            $table->foreign('idRealisation')->references('id')->on('realisation');
         });
     }
 

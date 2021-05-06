@@ -20,10 +20,6 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 </style>
-    <div style="background-image: url('../images/banniereAdmin.jpg'); background-repeat: no-repeat; background-size:cover; height: 300px">
-        <br><br>
-        <h1>Gestion des réalisations</h1>
-    </div>
     <h1>Création d’une nouvelle réalisation</h1>  
     <form method="POST" action="/realisation/enregistrer">  
         {{ csrf_field() }}  

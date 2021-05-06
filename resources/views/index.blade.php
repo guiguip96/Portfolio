@@ -136,10 +136,10 @@
             <!-- Experience-->
             <section class="resume-section" id="experience">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Expériences</h2>
+                    <h2 class="mb-5">Expériences de travail</h2>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
-                            <h3 class="mb-0">Informatique</h3>
+                            <h3 class="mb-0">Expériences de travail en informatique</h3>
                             <div class="subheading mb-3">Wazoom Studio</div>
                             <p>Modifier et mettre à jour de nombreux sites web</p>
                         </div>
@@ -151,6 +151,22 @@
                             <p>Stage lors de mon DEC. Majoritairement en support technique</p>
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary">Mai 2019 - Août 2019</span></div>
+                    </div>
+                    <h2 class="mb-5">Parcours scolaire</h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Études supérieures</h3>
+                            <div class="subheading mb-3">Techniques de l'informatique - École du Web</div>
+                            <p>Cégep de Rivière-du-Loup</p>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">2018 - 2021</span></div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <div class="subheading mb-3">Technique de Graphisme (2 ans)</div>
+                            <p>Cégep de Rivière-du-Loup</p>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">2013 - 2015</span></div>
                     </div>
                 </div>
             </section>
@@ -245,7 +261,7 @@
                                                     @guest
                                                     @else
                                                         @if(Auth::user()->type=='recruteur')
-                                                        <a class="btn btn-primary" href="./ajoutpanier/{{$uneRealisation->id}}">Ajouter à ma liste</a>
+                                                        <a class="btn btn-primary" href="./realisation/{{$uneRealisation->id}}">Plus de détails</a>
                                                         @endif
                                                     @endguest
                                                 </div>
@@ -258,6 +274,35 @@
                         <!--/.Slides-->
                     </div>
                     <!--/.Carousel Wrapper-->
+                </div>
+            </section>
+            <hr class="m-0" />
+            <!-- Contact-->
+            <section class="resume-section" id="experience">
+                <div class="container">
+                <h2 class="mb-5">Contactez-moi!</h2>
+                <form method="POST" action="/envoiCourriel">
+                    {{ csrf_field() }} 
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Prénom</label>
+                                <input name="prenom" type="text" class="form-control" id="inputEmail4" placeholder="Entrez votre prénom...">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Nom</label>
+                                <input name="nom" type="text" class="form-control" id="inputPassword4" placeholder="Entrez votre nom..." >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Adresse courriel</label>
+                            <input name="email" type="text" class="form-control" id="inputAddress" placeholder="Entrez votre email..." >
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Votre message</label>
+                            <textarea name="message" type="text" class="form-control" id="inputAddress" placeholder="Entrez votre message..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                    </form>
                 </div>
             </section>
             <hr class="m-0" />

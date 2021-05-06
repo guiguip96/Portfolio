@@ -23,10 +23,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require_once __DIR__ .'/vendor/phpmailer/phpmailer/src/Exception.php';
-require_once __DIR__ .'/vendor/phpmailer/phpmailer/src/PHPMailer.php';
-require_once __DIR__.'/vendor/phpmailer/phpmailer/src/SMTP.php';
-
 
 class EtudiantController extends Controller
 {
@@ -49,9 +45,17 @@ class EtudiantController extends Controller
                                     ->with('toutesLesCompetences', $toutesLesCompetences)
                                     ->with('toutesLesRealisations', $toutesLesRealisations); 
         }
-        return abort(403, trans('get fucked'));
+        return abort(403, trans('Accès Refusé'));
     }
 
+        /**
+     * @author: Guillaume Pelletier
+     * @link: /
+     * @subject: Afficher la zone d'administration
+     * @name: afficherAdmin
+     * @param In: -
+     * @param Out: La view pour afficher l'administration
+     */
     public function envoyerCourriel(Request $request)
     {
         $email = $request->email;
@@ -69,17 +73,39 @@ class EtudiantController extends Controller
 
             //Envoyé par
             $mail->setFrom($email, $nom . $prenom);
-            $mail->addAddress('portfolio.guillaume10@gmail.com', 'Pelletier Guigui');
-            $mail->addReplyTo('portfolio.guillaume10@gmail.com', 'Pelletier Guigui');
+            $mail->addAddress('portfolio.guillaume10@gmail.com', 'Pelletier Guillaume');
+            $mail->addReplyTo('portfolio.guillaume10@gmail.com', 'Pelletier Guillaume');
 
             //Contenu du courriel
-            $mail->IsHTML(true); $mail->Subject = "Send email using Gmail SMTP and PHPMailer";
+            $mail->CharSet = 'UTF-8';
+            $mail->IsHTML(true); $mail->Subject = "Message de la part de $email";
             $mail->Body = $message;
+            $mail->AltBody = 'Plain text message body for non-HTML email client. Gmail SMTP email body.';
+            $mail->send();
+
+
+
+            //Envoyé par
+            $mail->setFrom('portfolio.guillaume10@gmail.com', 'Portfolio - Guillaume Pelletier');
+            $mail->addAddress($email, $prenom . " " . $nom);
+            $mail->addReplyTo('portfolio.guillaume10@gmail.com', 'Pelletier Guillaume');
+            
+            //Contenu du courriel
+            $mail->CharSet = 'UTF-8';
+            $mail->IsHTML(true); $mail->Subject = "Message envoyé!";
+            $mail->Body = "Votre message à bien été reçu! Je vous reviens dès que possible!";
             $mail->AltBody = 'Plain text message body for non-HTML email client. Gmail SMTP email body.';
             $mail->send();
         } catch (Exception $e) {
             echo "Error in sending email. Mailer Error: {$mail->ErrorInfo}";
         }
+        
+        $Guillaume = Etudiant::where('id', '=', '1')->get();
+        $toutesLesCompetences = Competence::all();
+        $toutesLesRealisations = Realisation::all();
 
+        return view('index')->with('Guillaume', $Guillaume)
+                            ->with('toutesLesCompetences', $toutesLesCompetences)
+                            ->with('toutesLesRealisations', $toutesLesRealisations);
     }
 }

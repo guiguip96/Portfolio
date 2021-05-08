@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
-    <h2>Liste des compétences</h1>
-    @foreach ($toutLePanier as $unItem)  
-        <a  >{{$unItem->nomCompetence}}</a>
-        <a >{{$unItem->description}}</a>
-        <a  class="btn btn-danger"  href="/panier/supprimer/{{ $unItem->id }}">Supprimer</a>
+    <header>
+    @foreach ($toutLesEtudiants as $Guillaume)
+        <h1>Portfolio en ligne de {{$Guillaume->prenom}} {{$Guillaume->nom}}</h1>
     @endforeach
+    </header>
+    <h2>Liste des compétences retenues</h2>
+        <div>
+        @foreach ($toutLePanier as $unItem)  
+            <h3>{{$unItem->nomCompetence}}<h3>
+            <p>{{$unItem->description}}</p>
+        @endforeach
+        </div>    
 </body>
 </html>

@@ -112,16 +112,14 @@ class PanierController extends Controller
     public function imprimerPanier()
     {
         $emailRecruteur = Auth::user()->email;
+        $toutLesEtudiants = Etudiant::all();
         $unRecruteur = Recruteur::where('courriel', $emailRecruteur)->first();
         $toutLePanier = PanierTalent::where('idRecruteur', '=', $unRecruteur->id)
                                     ->join('competence', 'paniertalent.idCompetence', '=' , 'Competence.id')
                                     ->get();
 
-
-        $pdf = PDF::loadView('panierPDF' , ["toutLePanier"=>$toutLePanier]);
-        $pdf->download('panier.pdf');
-
-        return redirect()->route('panier.afficher')->with('message','Fichier enregistré!');
+        $pdf = PDF::loadView('panierPDF' , ["toutLePanier"=>$toutLePanier, "toutLesEtudiants"=>$toutLesEtudiants]);
+        return $pdf->stream('panier.pdf');
     }
 }
 

@@ -26,6 +26,46 @@ use PHPMailer\PHPMailer\Exception;
 
 class EtudiantController extends Controller
 {
+    public function modifierEtudiant($id)
+    {
+        $unEtudiant = Etudiant::find($id);
+        return view('etudiantModifier')->with('unEtudiant', $unEtudiant); 
+    }
+
+    /**
+     * @author: Guillaume Pelletier
+     * @link: (url ou git ou rien)
+     * @subject: L'ajout d'une nouvelle compétence
+     * @name: enregistrerCompetence
+     * @param In: Les champs du formulaire remplis
+     * @param Out: Une nouvelle compétence
+     */
+    public function enregistrerEtudiant(Request $request)
+    {
+        $request->validate
+        ([
+            'prenom' => ['required', 'min:3', 'max:50' ],
+            'nom' => ['required', 'min:3', 'max:50' ],
+            'adresse' => ['required', 'min:1', 'max:50' ],
+            'codePostal' => ['required', 'min:3', 'max:50' ],
+            'ville' => ['required', 'min:3', 'max:50' ],
+            'telephone' => ['required', 'min:3', 'max:50' ],
+            'courriel' => ['required', 'min:3', 'max:50' ],
+            'biographie' => ['required', 'min:3', 'max:2500' ],
+        ]);
+        $unEtudiant = Etudiant::firstOrNew(['id'=>$request->input('id')]);
+        $unEtudiant->prenom = $request->input('prenom');
+        $unEtudiant->prenom = $request->input('nom');
+        $unEtudiant->prenom = $request->input('adresse');
+        $unEtudiant->prenom = $request->input('codePostal');
+        $unEtudiant->prenom = $request->input('ville');
+        $unEtudiant->prenom = $request->input('telephone');
+        $unEtudiant->prenom = $request->input('courriel');
+        $unEtudiant->prenom = $request->input('biographie');
+        $unEtudiant->save();
+        return redirect()->route('etudiant.afficher')->with('message','Étudiant modifié avec succès');
+    }
+
     /**
      * @author: Guillaume Pelletier
      * @link: /

@@ -1,21 +1,30 @@
 @extends('templateClient')
 @section('titre')
-   COMPÉTENCE
+   ÉTUDIANT
 @endsection
 @section('contenu')
-    <h1>Modification d’une compétence</h1>  
-    <form method="POST" action="/competence/enregistrer">  
+    <h1>Modification de l'étudiant</h1>  
+    <form method="POST" action="/etudiant/enregistrer">  
         {{ csrf_field() }}  
-        <input name="id" type="hidden" placeholder="id" value="{{ $uneCompetence->id }}" />
-        <strong>Nom de la compétence:</strong><input name="nomCompetence" type="text" placeholder="Nom de la compétence" value="{{ $uneCompetence->nomCompetence }}" />
+        <input name="id" type="hidden" placeholder="id" value="{{ $unEtudiant->id }}" />
+        <strong>Prénom:</strong><input name="prenom" type="text" value="{{ $unEtudiant->prenom }}" />
         <br /> <br />
-        <strong>Description:</strong> <input name="description" type="text" value="{{ $uneCompetence->description }}" >
+        <strong>Nom:</strong> <input name="nom" type="text" value="{{ $unEtudiant->nom }}" >
+        <br /> <br />
+        <strong>Adresse:</strong> <input name="adresse" type="text" value="{{ $unEtudiant->adresse }}" >
+        <br /> <br />
+        <strong>Ville:</strong> <input name="ville" type="text" value="{{ $unEtudiant->ville }}" >
+        <br /> <br />
+        <strong>Code Postal:</strong> <input name="codePostal" type="text" value="{{ $unEtudiant->codePostal }}" >
+        <br /> <br />
+        <strong>Telephone:</strong> <input name="telephone" type="text" value="{{ $unEtudiant->telephone }}" >
+        <br /> <br />
+        <strong>Courriel:</strong> <input name="courriel" type="text" value="{{ $unEtudiant->courriel }}" >
+        <br /> <br />
+        <strong>Biographie:</strong> <input name="biographie" type="text" value="{{ $unEtudiant->biographie }}" >
         <br /> <br />
         <input name="idEtudiant" type="hidden"  value="1" />
         <button type="submit">Enregistrer</button>  
 
-        <script type="text/javascript">
-            $( "#datepicker" ).datepicker();
-        </script>
     </form>  
 @endsection

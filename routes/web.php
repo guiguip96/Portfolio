@@ -57,7 +57,7 @@ Route::post('/recruteur/enregistrer',
         [App\Http\Controllers\RecruteurController::class, 'enregistrerRecruteur'])->name('recruteur.enregistrer');
 Route::post('/etudiant/enregistrer', 
         [App\Http\Controllers\EtudiantController::class, 'enregistrerEtudiant'])->name('etudiant.enregistrer');
-Route::get('/etudiant/modifier/{id}', 
+Route::get('/modifier/etudiant/{id}', 
         [App\Http\Controllers\EtudiantController::class, 'modifierEtudiant'])->name('etudiant.modifier'); 
 
 //Gestion du panier

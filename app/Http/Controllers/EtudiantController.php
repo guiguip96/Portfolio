@@ -55,13 +55,13 @@ class EtudiantController extends Controller
         ]);
         $unEtudiant = Etudiant::firstOrNew(['id'=>$request->input('id')]);
         $unEtudiant->prenom = $request->input('prenom');
-        $unEtudiant->prenom = $request->input('nom');
-        $unEtudiant->prenom = $request->input('adresse');
-        $unEtudiant->prenom = $request->input('codePostal');
-        $unEtudiant->prenom = $request->input('ville');
-        $unEtudiant->prenom = $request->input('telephone');
-        $unEtudiant->prenom = $request->input('courriel');
-        $unEtudiant->prenom = $request->input('biographie');
+        $unEtudiant->nom = $request->input('nom');
+        $unEtudiant->adresse = $request->input('adresse');
+        $unEtudiant->codePostal = $request->input('codePostal');
+        $unEtudiant->ville = $request->input('ville');
+        $unEtudiant->telephone = $request->input('telephone');
+        $unEtudiant->courriel = $request->input('courriel');
+        $unEtudiant->biographie = $request->input('biographie');
         $unEtudiant->save();
         return redirect()->route('etudiant.afficher')->with('message','Étudiant modifié avec succès');
     }

@@ -50,11 +50,15 @@ Route::get('/realisation/modifier/{id}',
 Route::get('/realisation/supprimer/{id}', 
         [App\Http\Controllers\RealisationController::class, 'supprimerRealisation'])->name('realisation.supprimer');
 
-//Gestion des recruteurs
+//Gestion des recruteurs et étudiante
 Route::get('/profil/{id}', 
         [App\Http\Controllers\RecruteurController::class, 'afficherProfil'])->name('recruteur.afficherProfil'); 
 Route::post('/recruteur/enregistrer', 
         [App\Http\Controllers\RecruteurController::class, 'enregistrerRecruteur'])->name('recruteur.enregistrer');
+Route::post('/etudiant/enregistrer', 
+        [App\Http\Controllers\EtudiantController::class, 'enregistrerEtudiant'])->name('etudiant.enregistrer');
+Route::get('/etudiant/modifier/{id}', 
+        [App\Http\Controllers\EtudiantController::class, 'modifierEtudiant'])->name('etudiant.modifier'); 
 
 //Gestion du panier
 Route::get('/panier',
